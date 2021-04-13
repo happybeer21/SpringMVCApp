@@ -36,22 +36,25 @@ public class FirstController {
     public String calculatePage(@RequestParam("a")String a, @RequestParam("b")String b,
                                 @RequestParam("action")String action, Model model) {
 
-        String result = null;
+        double result = 0.;
+        double aValue = Double.parseDouble(a);
+        double bValue = Double.parseDouble(b);
+
         switch (action) {
             case "multiplication":
-                result = String.valueOf(Double.parseDouble(a) * Double.parseDouble(b));
+                result = aValue * bValue;
                 break;
             case "add":
-                result = String.valueOf(Integer.parseInt(a) + Integer.parseInt(b));
+                result = aValue + bValue;
                 break;
             case "substraction":
-                result = String.valueOf(Integer.parseInt(a) - Integer.parseInt(b));
+                result = aValue - bValue;
                 break;
             case "division":
-                result = String.valueOf(Double.parseDouble(a) / Double.parseDouble(b));
+                result = aValue / bValue;
                 break;
         }
-        
+
         model.addAttribute("result", String.format("%s %s with %s = %s", a, action, b, result));
         return "first/calculator";
     }
